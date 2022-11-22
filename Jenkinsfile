@@ -18,7 +18,7 @@ pipeline{
             }
             post{
                 success{
-                   deploy adapters: [tomcat9(credentialsId: 'tom_credential', path: '', url: 'http://43.206.121.199:8090')], contextPath: null, war: '*/.war'
+                   deploy adapters: [tomcat9(credentialsId: 'tom_credential', path: '', url: 'http://43.206.121.199:8090')], contextPath: null, war: '**/*.war'
                 }
             }
         }

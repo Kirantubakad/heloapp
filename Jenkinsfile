@@ -14,7 +14,7 @@ pipeline{
         stage('deploy'){
             steps{
                 echo "deploying to tomcat"
-                archiveArtifacts artifacts: '*/.war', caseSensitive: false, defaultExcludes: false
+                archiveArtifacts artifacts: '**/*.war', caseSensitive: false, defaultExcludes: false
             }
             post{
                 success{

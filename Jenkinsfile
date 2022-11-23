@@ -8,9 +8,16 @@ pipeline{
         }
         stage('build'){
             steps{
-                sh 'mvn clean install'
+                sh 'mvn clean package'
+            }
+            post{
+                success{
+                    echo "Archiving the artifacts"
+                    archiveArtifacts artifacts: '**/target/*.war', followSymlinks: false
+                }
             }
         }
+        
         stage('deploy'){
             steps{
                 echo "deploying to tomcat"

@@ -20,12 +20,6 @@ pipeline{
                 }
             }
         }
-        stage('test'){
-            steps{
-                   echo "Quality analysis by using sonarqube"
-                    sh 'sleep 2'
-            }
-        }
         stage('deploy'){
             steps{
                 echo "deploying to tomcat"
@@ -37,5 +31,11 @@ pipeline{
                 }
             }
         }
+         stage('test'){
+            steps{
+                   echo "testing team will run test cases"
+                    sh 'sleep 2'
+            }
+         }    
     }
- }    
+}   

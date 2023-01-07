@@ -8,7 +8,7 @@ pipeline{
     stages{
         stage('checkout scm'){
             steps{
-                checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[credentialsId: 'git_cred', url: 'https://github.com/Kirantubakad/heloapp.git']]])
+                git credentialsId: 'github_credential', url: 'https://github.com/Kirantubakad/heloapp.git'
             }
         }
         stage('build'){

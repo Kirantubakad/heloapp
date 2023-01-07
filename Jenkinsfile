@@ -1,5 +1,7 @@
 pipeline{
-    agent any
+    environment{
+        DOCKERHUB_CREDENTIALS = credentials('dockerhub-kiran')
+    }
     tools{
          maven 'maven3.6'
     }
@@ -13,29 +15,11 @@ pipeline{
             steps{
                 sh 'mvn clean package'
             }
-            post{
-                success{
-                    echo "Archiving the artifacts"
-                    archiveArtifacts artifacts: '**/target/*.war', followSymlinks: false
-                }
+        }
+        stage('build image'){
+            steps{
+                sh ' docker build -t kirankumartubakad/heloapp:helloapp . '
             }
         }
-        stage('deploy'){
-            steps{
-                echo "deploying to tomcat"
-               
-            }
-            post{
-                success{
-                   deploy adapters: [tomcat9(credentialsId: 'tomcatcredential', path: '', url: 'http://52.14.51.131:8090/')], contextPath: null, war: '**/*.war'
-                }
-            }
-        }
-         stage('test'){
-            steps{
-                   echo "testing team will run test cases"
-                    sh 'sleep 2'
-            }
-         }    
     }
 }   

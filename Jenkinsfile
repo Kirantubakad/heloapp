@@ -12,11 +12,13 @@ pipeline{
             }
         }
         stage('build'){
+            agent {label 'slave1'}
             steps{
                 sh 'mvn clean package'
             }
         }
         stage('build image'){
+            agent {label 'slave1'}
             steps{
                 sh ' docker build -t kirankumartubakad/heloapp:helloapp . '
             }

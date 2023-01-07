@@ -3,7 +3,7 @@ pipeline{
         DOCKERHUB_CREDENTIALS = credentials('dockerhub-kiran')
     }
     tools{
-         maven 'maven3.6'
+         maven 'maven'
     }
     stages{
         stage('checkout scm'){

@@ -8,6 +8,7 @@ pipeline{
     }
     stages{
         stage('checkout scm'){
+            agent {label 'slave1'}
             steps{
                 git credentialsId: 'github_credential', url: 'https://github.com/Kirantubakad/heloapp.git'
             }

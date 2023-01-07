@@ -16,7 +16,7 @@ pipeline{
         stage('build'){
             agent {label 'slave1'}
             steps{
-                sh 'mvn clean package'
+                sh 'mvn clean install'
             }
         }
         stage('build image'){
